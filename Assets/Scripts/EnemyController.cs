@@ -4,30 +4,28 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    private IMovementStrategy movementStrategy;
+
     public float moveSpeed = 2f;
-    private Transform target;
+    public enum StrategyType { ToUrn, ToPlayer }
+    public StrategyType strategyType;
+    //private Transform target;
 
     void Start()
     {
-        // Buscar la urna por tag o nombre
-        GameObject chestObject = GameObject.FindWithTag("Chest");
-
-        if (chestObject != null)
+        switch (strategyType)
         {
-            target = chestObject.transform;
-        }
-        else
-        {
-            Debug.LogError("No se encontró el cofre");
+            case StrategyType.ToUrn:
+                movementStrategy = new MoveToChestStrategy(moveSpeed);
+                break;
+            case StrategyType.ToPlayer:
+                movementStrategy = new MoveToPlayerStrategy(moveSpeed);
+                break;
         }
     }
 
     void Update()
     {
-        if (target != null)
-        {
-            Vector2 direction = (target.position - transform.position).normalized;
-            transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
-        }
+        movementStrategy?.Move(transform);
     }
 }

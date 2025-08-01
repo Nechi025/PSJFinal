@@ -14,6 +14,10 @@ public class PlayerController : MonoBehaviour
     private Vector2 lastDirection = Vector2.right;
 
     public GameObject attackZone;
+
+    private int jumpsRemaining = 1;
+    public int maxJumps = 2;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -33,10 +37,10 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
-        if (isGrounded)
+        if (jumpsRemaining > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            isGrounded = false;
+            jumpsRemaining--;
         }
     }
 
@@ -44,13 +48,17 @@ public class PlayerController : MonoBehaviour
     {
         StartCoroutine(DoAttack());
     }
+    public void ParryBoost()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.8f); // o el valor que quieras
+    }
 
     // Detecta la colisión con el suelo para reactivar salto
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
-            isGrounded = true;
+            jumpsRemaining = maxJumps;
         }
     }
 
