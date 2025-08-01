@@ -10,6 +10,10 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded = true;
     private Vector2 moveDirection = Vector2.zero;
+
+    private Vector2 lastDirection = Vector2.right;
+
+    public GameObject attackZone;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,7 +26,9 @@ public class PlayerController : MonoBehaviour
 
     public void Move(Vector2 direction)
     {
-        moveDirection = new Vector2(direction.x, 0);
+        moveDirection = new Vector2(direction.x, 0); // solo mover eje X
+        if (direction != Vector2.zero)
+            lastDirection = direction.normalized;
     }
 
     public void Jump()
@@ -34,12 +40,35 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Parry()
+    {
+        StartCoroutine(DoAttack());
+    }
+
     // Detecta la colisión con el suelo para reactivar salto
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
         {
             isGrounded = true;
+        }
+    }
+
+    IEnumerator DoAttack()
+    {
+        // Posicionar zona de ataque en la dirección actual
+        if (attackZone != null)
+        {
+            Vector3 offset = new Vector3(lastDirection.x, lastDirection.y, 0f);
+            attackZone.transform.localPosition = offset.normalized * 0.5f; // distancia frente al jugador
+            attackZone.SetActive(true);
+        }
+
+        yield return new WaitForSeconds(0.2f);
+
+        if (attackZone != null)
+        {
+            attackZone.SetActive(false);
         }
     }
 }

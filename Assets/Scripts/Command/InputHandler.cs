@@ -6,6 +6,7 @@ public class InputHandler : MonoBehaviour
 {
     private PlayerController player;
 
+    private Queue<ICommand> commandQueue = new Queue<ICommand>();
     void Start()
     {
         player = GetComponent<PlayerController>();
@@ -18,15 +19,23 @@ public class InputHandler : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) direction += Vector2.left;
         if (Input.GetKey(KeyCode.D)) direction += Vector2.right;
 
-        // Ejecutar movimiento solo si se está presionando una tecla
-        ICommand moveCommand = new MoveCommand(player, direction);
-        moveCommand.Execute();
+        direction = direction.normalized;
+        commandQueue.Enqueue(new MoveCommand(player, direction));
 
-        // Ejecutar salto
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            ICommand jumpCommand = new JumpCommand(player);
-            jumpCommand.Execute();
+            commandQueue.Enqueue(new JumpCommand(player));
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            commandQueue.Enqueue(new AttackCommand(player));
+        }
+
+        // Ejecutar todos los comandos encolados
+        while (commandQueue.Count > 0)
+        {
+            commandQueue.Dequeue().Execute();
         }
     }
 
