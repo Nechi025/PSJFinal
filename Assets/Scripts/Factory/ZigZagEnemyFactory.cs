@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemyFactory : IEnemyFactory
+public class ZigZagEnemyFactory : IEnemyFactory
 {
     private EnemyPrototype prototype;
 
-    public BasicEnemyFactory(EnemyPrototype prototype)
+    public ZigZagEnemyFactory(EnemyPrototype prototype)
     {
         this.prototype = prototype;
     }
@@ -16,8 +16,8 @@ public class BasicEnemyFactory : IEnemyFactory
         GameObject enemy = prototype.Clone();
         enemy.transform.position = spawnPosition;
 
-        var controller = enemy.GetComponent<EnemyController>();
-        controller.strategyType = EnemyController.StrategyType.ToChest;
+        EnemyController controller = enemy.GetComponent<EnemyController>();
+        controller.strategyType = EnemyController.StrategyType.ZigZagToChest;
 
         return enemy;
     }

@@ -5,10 +5,17 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public EnemyPrototype basicEnemy;
-    public EnemyPrototype fastEnemy;
+    public EnemyPrototype fastEnemy; 
+    public EnemyPrototype zigzagEnemy;
+
+    public EnemyPrototype randomEnemy;
 
     private IEnemyFactory basicFactory;
     private IEnemyFactory fastFactory;
+    private IEnemyFactory zigzagFactory;
+
+    private IEnemyFactory randomFactory;
+    
 
     public Transform[] spawnPoints;
 
@@ -16,6 +23,8 @@ public class EnemySpawner : MonoBehaviour
     {
         basicFactory = new BasicEnemyFactory(basicEnemy);
         fastFactory = new FastEnemyFactory(fastEnemy);
+        zigzagFactory = new ZigZagEnemyFactory(zigzagEnemy);
+        randomFactory = new RandomEnemyFactory(randomEnemy);
     }
 
     void Update()
@@ -30,6 +39,18 @@ public class EnemySpawner : MonoBehaviour
         {
             Vector3 pos = GetRandomSpawn();
             fastFactory.CreateEnemy(pos);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Vector3 pos = GetRandomSpawn();
+            zigzagFactory.CreateEnemy(pos);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Vector3 pos = GetRandomSpawn();
+            randomFactory.CreateEnemy(pos);
         }
     }
 

@@ -1113,6 +1113,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   basicEnemy: {fileID: 401356315959858563, guid: 442d39776e580a5499d78648c452f8e1, type: 3}
   fastEnemy: {fileID: 2696855537258862438, guid: e4719ecc3d52ff94a9f4d183d3dfa027, type: 3}
+  zigzagEnemy: {fileID: 281439098786853802, guid: b55a78d2613426e459a343242bd7e5dc, type: 3}
+  randomEnemy: {fileID: 401356315959858563, guid: 442d39776e580a5499d78648c452f8e1, type: 3}
   spawnPoints:
   - {fileID: 814786446}
   - {fileID: 1841917435}

@@ -18,7 +18,6 @@ public class FastEnemyFactory : IEnemyFactory
 
         var controller = enemy.GetComponent<EnemyController>();
         controller.strategyType = EnemyController.StrategyType.ToPlayer;
-        controller.moveSpeed = 4f;
 
         return enemy;
     }

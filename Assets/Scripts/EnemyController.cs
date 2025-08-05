@@ -7,7 +7,7 @@ public class EnemyController : MonoBehaviour
     private IMovementStrategy movementStrategy;
 
     public float moveSpeed = 2f;
-    public enum StrategyType { ToUrn, ToPlayer }
+    public enum StrategyType { ToChest, ToPlayer, ZigZagToChest }
     public StrategyType strategyType;
     //private Transform target;
 
@@ -15,11 +15,14 @@ public class EnemyController : MonoBehaviour
     {
         switch (strategyType)
         {
-            case StrategyType.ToUrn:
+            case StrategyType.ToChest:
                 movementStrategy = new MoveToChestStrategy(moveSpeed);
                 break;
             case StrategyType.ToPlayer:
                 movementStrategy = new MoveToPlayerStrategy(moveSpeed);
+                break;
+            case StrategyType.ZigZagToChest:
+                movementStrategy = new ZigZagToChestStrategy(moveSpeed);
                 break;
         }
     }
