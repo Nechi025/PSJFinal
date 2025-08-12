@@ -5,10 +5,12 @@ using UnityEngine;
 public class RandomEnemyFactory : IEnemyFactory
 {
     private EnemyPrototype prototype;
+    private EnemyDataFactory enemyDataFactory;
 
-    public RandomEnemyFactory(EnemyPrototype prototype)
+    public RandomEnemyFactory(EnemyPrototype prototype, EnemyDataFactory dataFactory)
     {
         this.prototype = prototype;
+        this.enemyDataFactory = dataFactory;
     }
 
     public GameObject CreateEnemy(Vector3 spawnPosition)
@@ -18,23 +20,19 @@ public class RandomEnemyFactory : IEnemyFactory
 
         EnemyController controller = enemy.GetComponent<EnemyController>();
 
-        // Estrategia aleatoria
-        int r = Random.Range(0, 3); // 3 estrategias por ahora
-        switch (r)
+        int r = Random.Range(0, 3);
+        string type = r switch
         {
-            case 0:
-                controller.strategyType = EnemyController.StrategyType.ToChest;
-                controller.moveSpeed = 2f;
-                break;
-            case 1:
-                controller.strategyType = EnemyController.StrategyType.ToPlayer;
-                controller.moveSpeed = 3.5f;
-                break;
-            case 2:
-                controller.strategyType = EnemyController.StrategyType.ZigZagToChest;
-                controller.moveSpeed = 2.5f;
-                break;
-        }
+            0 => "Basic",
+            1 => "Fast",
+            2 => "ZigZag",
+            _ => "Basic"
+        };
+
+        EnemyData data = enemyDataFactory.GetEnemyData(type);
+
+        controller.strategyType = (EnemyController.StrategyType)r;
+        controller.Initialize(data);
 
         return enemy;
     }
