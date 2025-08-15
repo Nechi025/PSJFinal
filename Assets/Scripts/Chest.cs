@@ -2,9 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Chest : MonoBehaviour
+public class Chest : MonoBehaviour, ISubject
 {
     private List<IObserver> observers = new List<IObserver>();
+
+    private int maxHealth = 3;
+    private int currentHealth;
+
+    public EventQueueManager eventQueue;
+
+    void Start()
+    {
+        currentHealth = maxHealth;
+    }
 
     public void AddObserver(IObserver observer)
     {
@@ -16,11 +26,11 @@ public class Chest : MonoBehaviour
         observers.Remove(observer);
     }
 
-    public void NotifyObservers(string eventType)
+    public void NotifyObservers(GameEvent gameEvent)
     {
         foreach (var observer in observers)
         {
-            observer.OnNotify(eventType);
+            observer.OnNotify(gameEvent);
         }
     }
 
@@ -28,7 +38,19 @@ public class Chest : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
-            NotifyObservers("GameOver");
+            currentHealth--;
+
+            GameEvent hitEvent = new GameEvent("ChestHit", collision.gameObject, transform.position);
+            eventQueue.AddEvent(hitEvent);
+
+            NotifyObservers(hitEvent);
+
+            if (currentHealth <= 0)
+            {
+                GameEvent gameOverEvent = new GameEvent("GameOver", collision.gameObject, transform.position);
+                eventQueue.AddEvent(gameOverEvent);
+                NotifyObservers(gameOverEvent);
+            }
         }
     }
 }

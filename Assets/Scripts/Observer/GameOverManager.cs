@@ -12,9 +12,9 @@ public class GameOverManager : MonoBehaviour, IObserver
         chest.AddObserver(this);
     }
 
-    public void OnNotify(string eventType)
+    public void OnNotify(GameEvent gameEvent)
     {
-        if (eventType == "GameOver")
+        if (gameEvent.eventType == "GameOver")
         {
             SceneManager.LoadScene("GameOver");
         }
