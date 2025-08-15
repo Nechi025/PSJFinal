@@ -14,7 +14,6 @@ public class EnemyDataFactory
         }
         else
         {
-            // Aquí podrías cargar datos desde ScriptableObjects o crear en tiempo real
             EnemyData newData = CreateEnemyData(type);
             enemyDataPool[type] = newData;
             return newData;
@@ -28,23 +27,19 @@ public class EnemyDataFactory
         switch (type)
         {
             case "Basic":
-                data.sprite = Resources.Load<Sprite>("Assets/Sprites/Skull");
-                data.color = Color.red;
+                data.sprite = Resources.Load<Sprite>("Sprites/Skull");
                 data.baseSpeed = 2f;
                 break;
             case "Fast":
-                data.sprite = Resources.Load<Sprite>("Assets/Sprites/Axe");
-                data.color = Color.yellow;
+                data.sprite = Resources.Load<Sprite>("Sprites/Axe");
                 data.baseSpeed = 3.5f;
                 break;
             case "ZigZag":
-                data.sprite = Resources.Load<Sprite>("Assets/Sprites/Eye");
-                data.color = Color.blue;
+                data.sprite = Resources.Load<Sprite>("Sprites/Eye");
                 data.baseSpeed = 2.5f;
                 break;
             default:
                 data.sprite = null;
-                data.color = Color.white;
                 data.baseSpeed = 2f;
                 break;
         }

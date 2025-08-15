@@ -27,10 +27,8 @@ public class EnemyController : MonoBehaviour
         if (spriteRenderer != null)
         {
             spriteRenderer.sprite = data.sprite;
-            spriteRenderer.color = data.color;
         }
 
-        // Configurar la estrategia según el tipo (podrías también mapear en EnemyData)
         switch (strategyType)
         {
             case StrategyType.ToChest:

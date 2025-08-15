@@ -6,6 +6,5 @@ using UnityEngine;
 public class EnemyData
 {
     public Sprite sprite;
-    public Color color;
     public float baseSpeed;
 }
