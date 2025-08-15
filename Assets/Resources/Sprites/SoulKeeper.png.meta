@@ -487,6 +487,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Star
+      rect:
+        serializedVersion: 2
+        x: 117
+        y: 21
+        width: 5
+        height: 5
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c76b970f8d50b574f9796e9c585fedb7
+      internalID: -583060134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -518,6 +539,7 @@ TextureImporter:
       SoulKeeper_0: 1155746176
       SoulKeeper_3: -1228579004
       SoulKeeper_4: 556739605
+      Star: -583060134
       Swipe1: -2019789784
       Swipe2: -1094392856
       Swipe3: 2109569641
