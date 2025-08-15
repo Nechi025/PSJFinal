@@ -28,17 +28,17 @@ public class EnemyDataFactory
         switch (type)
         {
             case "Basic":
-                //data.sprite = Resources.Load<Sprite>("Sprites/BasicGhost");
+                data.sprite = Resources.Load<Sprite>("Assets/Sprites/Skull");
                 data.color = Color.red;
                 data.baseSpeed = 2f;
                 break;
             case "Fast":
-                //data.sprite = Resources.Load<Sprite>("Sprites/FastGhost");
+                data.sprite = Resources.Load<Sprite>("Assets/Sprites/Axe");
                 data.color = Color.yellow;
                 data.baseSpeed = 3.5f;
                 break;
             case "ZigZag":
-                //data.sprite = Resources.Load<Sprite>("Sprites/ZigZagGhost");
+                data.sprite = Resources.Load<Sprite>("Assets/Sprites/Eye");
                 data.color = Color.blue;
                 data.baseSpeed = 2.5f;
                 break;

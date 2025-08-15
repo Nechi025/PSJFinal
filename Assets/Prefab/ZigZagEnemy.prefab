@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3001214322871495949}
   - component: {fileID: 8235425857217206963}
   - component: {fileID: 281439098786853802}
+  - component: {fileID: 8299166886222516989}
   m_Layer: 0
   m_Name: ZigZagEnemy
   m_TagString: Enemy
@@ -77,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.30205047, g: 0.46061316, b: 0.89433956, a: 1}
+  m_Sprite: {fileID: -1735603951, guid: a37d0812c17cfc44aabd3504f4b6f439, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -162,6 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a736e9a69e477b34f9460e3c9122ae9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 0}
   moveSpeed: 3
   strategyType: 2
 --- !u!114 &281439098786853802
@@ -176,3 +178,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da55b7007db0b8d4d943813fe9c76a55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &8299166886222516989
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2330627119633246793}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 868a351eaaf4ee04fbee43ca107d41fe, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

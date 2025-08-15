@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
 
         if (spriteRenderer != null)
         {
-            //spriteRenderer.sprite = data.sprite;
+            spriteRenderer.sprite = data.sprite;
             spriteRenderer.color = data.color;
         }
 
