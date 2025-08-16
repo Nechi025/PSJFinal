@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour, IObserver
 {
-    public Chest chest;
+    public GameFacade facade;
     public GameObject gameOverScreen;
 
     void Start()
     {
         gameOverScreen.SetActive(false);
-        chest.AddObserver(this);
+        facade.AddObserver(this);
     }
 
     public void OnNotify(GameEvent gameEvent)
@@ -25,7 +25,7 @@ public class GameOverManager : MonoBehaviour, IObserver
 
     void OnDestroy()
     {
-        chest.RemoveObserver(this);
+        facade.RemoveObserver(this);
     }
 
     public void GoToMenu()

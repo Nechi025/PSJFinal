@@ -48,12 +48,4 @@ public class EnemyController : MonoBehaviour
     {
         movementStrategy?.Move(transform);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Chest"))
-        {
-            Destroy(this.gameObject);
-        }
-    }
 }
