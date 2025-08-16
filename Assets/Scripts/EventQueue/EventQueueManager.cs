@@ -12,7 +12,7 @@ public class EventQueueManager : MonoBehaviour
         for (int i = 0; i < eventsToProcess; i++)
         {
             GameEvent gameEvent = eventQueue.Dequeue();
-            HandleEvent(gameEvent);
+            //HandleEvent(gameEvent);
         }
     }
 
@@ -27,6 +27,9 @@ public class EventQueueManager : MonoBehaviour
         {
             case "ChestHit":
                 Debug.Log("La lampara fue golpeada");
+                break;
+            case "KillEnemy":
+                Debug.Log("+1");
                 break;
             case "GameOver":
                 Debug.Log("Game Over!");

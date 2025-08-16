@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 7f;
 
     private Rigidbody2D rb;
-    private bool isGrounded = true;
     private Vector2 moveDirection = Vector2.zero;
 
     private Vector2 lastDirection = Vector2.right;
@@ -140,15 +139,17 @@ public class PlayerController : MonoBehaviour
         if (attackZone != null)
         {
             Vector3 offset = new Vector3(lastDirection.x, lastDirection.y, 0f);
-            attackZone.transform.localPosition = offset.normalized * 0.5f; // distancia frente al jugador
-            attackZone.SetActive(true);
+            attackZone.transform.localPosition = offset.normalized * 0.5f;
+            attackZone.GetComponent<SpriteRenderer>().enabled = true;
+            attackZone.GetComponent<Collider2D>().enabled = true;
         }
 
         yield return new WaitForSeconds(0.2f);
 
         if (attackZone != null)
         {
-            attackZone.SetActive(false);
+            attackZone.GetComponent<SpriteRenderer>().enabled = false;
+            attackZone.GetComponent<Collider2D>().enabled = false;
         }
     }
 }

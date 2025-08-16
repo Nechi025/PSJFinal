@@ -6,9 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameOverManager : MonoBehaviour, IObserver
 {
     public Chest chest;
+    public GameObject gameOverScreen;
 
     void Start()
     {
+        gameOverScreen.SetActive(false);
         chest.AddObserver(this);
     }
 
@@ -16,12 +18,18 @@ public class GameOverManager : MonoBehaviour, IObserver
     {
         if (gameEvent.eventType == "GameOver")
         {
-            SceneManager.LoadScene("GameOver");
+            gameOverScreen.SetActive(true);
+            Time.timeScale = 0f;
         }
     }
 
     void OnDestroy()
     {
         chest.RemoveObserver(this);
+    }
+
+    public void GoToMenu()
+    {
+
     }
 }
