@@ -30,6 +30,6 @@ public class GameOverManager : MonoBehaviour, IObserver
 
     public void GoToMenu()
     {
-
+        SceneManager.LoadScene("MainMenu");
     }
 }
