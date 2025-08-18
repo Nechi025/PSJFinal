@@ -496,7 +496,7 @@ TextureImporter:
         width: 5
         height: 5
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -504,6 +504,48 @@ TextureImporter:
       bones: []
       spriteID: c76b970f8d50b574f9796e9c585fedb7
       internalID: -583060134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Life
+      rect:
+        serializedVersion: 2
+        x: 65
+        y: 81
+        width: 15
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ae5ba7ebd909e1148946c586d55d405c
+      internalID: -1038146126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: SoulKeeper_1
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 48
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4086aa31d70d4294991654657ecc9b82
+      internalID: -861019045
       vertices: []
       indices: 
       edges: []
@@ -535,8 +577,10 @@ TextureImporter:
       KeeperWalk3: -819096466
       Lamp: 1345069808
       Lamp2: 835732827
+      Life: -1038146126
       Skull: 1705856412
       SoulKeeper_0: 1155746176
+      SoulKeeper_1: -861019045
       SoulKeeper_3: -1228579004
       SoulKeeper_4: 556739605
       Star: -583060134

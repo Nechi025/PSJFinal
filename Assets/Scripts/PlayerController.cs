@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(collision.gameObject);
             StartCoroutine(ApplyStun());
+            animator.SetBool("Stunned", true);
         }
     }
 
@@ -163,7 +164,7 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("Stunned");*/
 
         yield return new WaitForSeconds(stunDuration);
-
+        animator.SetBool("Stunned", false);
         isStunned = false;
     }
 
