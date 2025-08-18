@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -24,15 +25,24 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     public SpriteRenderer spriteRendererSwipe;
 
+    private bool isStunned = false;
+    public float stunDuration = 1.5f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         if (spriteRenderer == null)
             spriteRenderer = GetComponent<SpriteRenderer>();
+
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        Collider2D attackCollider = attackZone.GetComponent<Collider2D>();
+        Physics2D.IgnoreCollision(playerCollider, attackCollider, true);
     }
 
     void Update()
     {
+        if (isStunned) return;
+
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
 
         currentSpeed = Mathf.Abs(rb.velocity.x);
@@ -55,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
     public void Move(Vector2 direction)
     {
+        if (isStunned) return;
+
         moveDirection = new Vector2(direction.x, 0); // solo mover eje X
         if (direction != Vector2.zero)
             lastDirection = direction.normalized;
@@ -73,6 +85,8 @@ public class PlayerController : MonoBehaviour
 
     public void Jump()
     {
+        if (isStunned) return;
+
         if (jumpsRemaining > 0)
         {
             bool wasGrounded = Grounded;
@@ -105,6 +119,8 @@ public class PlayerController : MonoBehaviour
 
     public void Parry()
     {
+        if (isStunned) return;
+
         if (animator != null)
             animator.SetTrigger("Attack");
         StartCoroutine(DoAttack());
@@ -122,6 +138,12 @@ public class PlayerController : MonoBehaviour
             jumpsRemaining = maxJumps;
             Grounded = true;
         }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+            StartCoroutine(ApplyStun());
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -132,14 +154,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    IEnumerator ApplyStun()
+    {
+        isStunned = true;
+        rb.velocity = Vector2.zero;
+
+        /*if (animator != null)
+            animator.SetTrigger("Stunned");*/
+
+        yield return new WaitForSeconds(stunDuration);
+
+        isStunned = false;
+    }
 
     IEnumerator DoAttack()
     {
-        // Posicionar zona de ataque en la dirección actual
         if (attackZone != null)
         {
             Vector3 offset = new Vector3(lastDirection.x, lastDirection.y, 0f);
-            attackZone.transform.localPosition = offset.normalized * 0.5f;
+            attackZone.transform.localPosition = offset.normalized * 0.7f;
             attackZone.GetComponent<SpriteRenderer>().enabled = true;
             attackZone.GetComponent<Collider2D>().enabled = true;
         }

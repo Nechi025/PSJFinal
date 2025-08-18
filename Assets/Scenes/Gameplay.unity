@@ -1213,7 +1213,7 @@ GameObject:
   - component: {fileID: 809785162}
   - component: {fileID: 809785164}
   - component: {fileID: 809785165}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1238,6 +1238,7 @@ MonoBehaviour:
   maxJumps: 2
   animator: {fileID: 809785164}
   spriteRendererSwipe: {fileID: 1150251000}
+  stunDuration: 1.5
 --- !u!50 &809785159
 Rigidbody2D:
   serializedVersion: 4
@@ -1330,8 +1331,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1150250998}
   - {fileID: 1571813090}
+  - {fileID: 1150250998}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -360}
 --- !u!114 &809785162
@@ -1379,7 +1380,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1731,7 +1732,7 @@ GameObject:
   - component: {fileID: 1150251000}
   - component: {fileID: 1150251001}
   - component: {fileID: 1150251002}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AttackZone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1746,8 +1747,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150250997}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.5, y: 0.2, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.0699997, y: 0.049999714, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1846,7 +1847,7 @@ CapsuleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.1, y: -0.09}
