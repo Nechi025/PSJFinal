@@ -27,10 +27,10 @@ public class ZigZagToChestStrategy : IMovementStrategy
 
         Vector2 toTarget = (chest.position - self.position).normalized;
 
-        //Obtengo la dirección perpendicular para el zigzag
+        //Obtengo la direccion perpendicular para el zigzag
         Vector2 perpendicular = new Vector2(-toTarget.y, toTarget.x);
 
-        //Oscilación en esa dirección
+        //Oscilacion en esa direccion
         float wave = Mathf.Sin((Time.time + timeOffset) * frequency) * amplitude;
         Vector2 zigzag = toTarget + perpendicular * wave;
 
