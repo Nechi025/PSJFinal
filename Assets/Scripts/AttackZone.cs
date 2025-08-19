@@ -9,6 +9,7 @@ public class AttackZone : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            //Llamo al Facade con la logica de puntaje
             GameFacade.Instance.OnEnemyKilled(other.gameObject, transform.position);
         }
     }

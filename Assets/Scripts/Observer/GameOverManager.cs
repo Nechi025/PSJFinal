@@ -5,13 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour, IObserver
 {
-    public GameFacade facade;
     public GameObject gameOverScreen;
 
     void Start()
     {
         gameOverScreen.SetActive(false);
-        facade.AddObserver(this);
+        GameFacade.Instance.AddObserver(this);
     }
 
     public void OnNotify(GameEvent gameEvent)
@@ -25,7 +24,7 @@ public class GameOverManager : MonoBehaviour, IObserver
 
     void OnDestroy()
     {
-        facade.RemoveObserver(this);
+        GameFacade.Instance.RemoveObserver(this);
     }
 
     public void GoToMenu()

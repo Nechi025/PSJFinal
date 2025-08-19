@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        //Si esta stunneado cancela todo movimiento
         if (isStunned) return;
 
         rb.velocity = new Vector2(moveDirection.x * moveSpeed, rb.velocity.y);
@@ -67,7 +68,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isStunned) return;
 
-        moveDirection = new Vector2(direction.x, 0); // solo mover eje X
+        moveDirection = new Vector2(direction.x, 0); //Solo se mueve en el eje X
         if (direction != Vector2.zero)
             lastDirection = direction.normalized;
 
@@ -95,12 +96,12 @@ public class PlayerController : MonoBehaviour
 
             if (animator != null)
             {
-                if (wasGrounded) // Salta   
+                if (wasGrounded) //Salta   
                 {
                     animator.SetBool("IsJumping", true);
                     animator.SetBool("IsDoubleJumping", false);
                 }
-                else if (!wasGrounded && jumpsRemaining == 1) // Segundo Salto
+                else if (!wasGrounded && jumpsRemaining == 1) //Segundo Salto
                 {
                     animator.SetBool("IsDoubleJumping", true);
                     animator.SetBool("IsJumping", false);
@@ -127,10 +128,10 @@ public class PlayerController : MonoBehaviour
     }
     public void ParryBoost()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.8f); // o el valor que quieras
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce * 0.8f);
     }
 
-    // Detecta la colisión con el suelo para reactivar salto
+    //Detecta la colisión con el suelo para reactivar salto
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Floor"))
@@ -160,9 +161,6 @@ public class PlayerController : MonoBehaviour
         isStunned = true;
         rb.velocity = Vector2.zero;
 
-        /*if (animator != null)
-            animator.SetTrigger("Stunned");*/
-
         yield return new WaitForSeconds(stunDuration);
         animator.SetBool("Stunned", false);
         isStunned = false;
@@ -170,6 +168,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator DoAttack()
     {
+        //Aparece la zona de ataque delante del player
         if (attackZone != null)
         {
             Vector3 offset = new Vector3(lastDirection.x, lastDirection.y, 0f);

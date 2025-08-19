@@ -57,6 +57,7 @@ public class GameFacade : MonoBehaviour, ISubject
 
     public IEnumerator SpawnWave()
     {
+        //Logica del spawner
         currentWave++;
         int enemiesThisWave = Mathf.Min(baseEnemiesPerWave + currentWave, maxEnemiesPerWave);
 
@@ -78,6 +79,7 @@ public class GameFacade : MonoBehaviour, ISubject
 
     public void ChestHit(GameObject enemy, Vector3 position, ref int currentHealth)
     {
+        //Logica del cofre
         currentHealth--;
 
         GameEvent hitEvent = new GameEvent("ChestHit", enemy, position);
@@ -94,6 +96,7 @@ public class GameFacade : MonoBehaviour, ISubject
 
     public void OnEnemyKilled(GameObject enemy, Vector3 position)
     {
+        //Logica del puntaje
         GameEvent scoreEvent = new GameEvent("KillEnemy", enemy, position);
         eventQueue.AddEvent(scoreEvent);
         NotifyObservers(scoreEvent);

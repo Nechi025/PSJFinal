@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class HUD : MonoBehaviour, IObserver
 {
-    public GameFacade facade;
     public GameObject[] lifes;
     private int chestLifes;
 
@@ -15,7 +14,7 @@ public class HUD : MonoBehaviour, IObserver
 
     void Start()
     {
-        facade.AddObserver(this);
+        GameFacade.Instance.AddObserver(this);
         chestLifes = 3;
     }
 
@@ -36,7 +35,7 @@ public class HUD : MonoBehaviour, IObserver
 
     void OnDestroy()
     {
-        facade.RemoveObserver(this);
+        GameFacade.Instance.RemoveObserver(this);
     }
 
     public void LoseLife(int index)

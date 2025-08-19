@@ -12,28 +12,11 @@ public class EventQueueManager : MonoBehaviour
         for (int i = 0; i < eventsToProcess; i++)
         {
             GameEvent gameEvent = eventQueue.Dequeue();
-            //HandleEvent(gameEvent);
         }
     }
 
     public void AddEvent(GameEvent gameEvent)
     {
         eventQueue.Enqueue(gameEvent);
-    }
-
-    private void HandleEvent(GameEvent gameEvent)
-    {
-        switch (gameEvent.eventType)
-        {
-            case "ChestHit":
-                Debug.Log("La lampara fue golpeada");
-                break;
-            case "KillEnemy":
-                Debug.Log("+1");
-                break;
-            case "GameOver":
-                Debug.Log("Game Over!");
-                break;
-        }
     }
 }

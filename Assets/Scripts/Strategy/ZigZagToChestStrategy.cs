@@ -9,7 +9,7 @@ public class ZigZagToChestStrategy : IMovementStrategy
     private float frequency;
     private float amplitude;
 
-    private float timeOffset; // Para que cada enemigo tenga una oscilación distinta
+    private float timeOffset;
 
     public ZigZagToChestStrategy(float speed, float frequency = 3f, float amplitude = 1f)
     {
@@ -18,7 +18,7 @@ public class ZigZagToChestStrategy : IMovementStrategy
         this.amplitude = amplitude;
 
         chest = GameObject.FindWithTag("Chest")?.transform;
-        timeOffset = Random.Range(0f, 100f);
+        timeOffset = Random.Range(0f, 100f); //Para que la oscilacion varie entre enemigos
     }
 
     public void Move(Transform self)
@@ -27,10 +27,10 @@ public class ZigZagToChestStrategy : IMovementStrategy
 
         Vector2 toTarget = (chest.position - self.position).normalized;
 
-        // Obtener la dirección perpendicular para el zigzag
+        //Obtengo la dirección perpendicular para el zigzag
         Vector2 perpendicular = new Vector2(-toTarget.y, toTarget.x);
 
-        // Oscilación en esa dirección
+        //Oscilación en esa dirección
         float wave = Mathf.Sin((Time.time + timeOffset) * frequency) * amplitude;
         Vector2 zigzag = toTarget + perpendicular * wave;
 

@@ -16,6 +16,7 @@ public class Chest : MonoBehaviour
     {
         if (collision.CompareTag("Enemy"))
         {
+            //LLamo al Facade con la logica de golpe
             GameFacade.Instance.ChestHit(collision.gameObject, transform.position, ref currentHealth);
             Destroy(collision.gameObject);
         }
